@@ -5,7 +5,7 @@ import os
 class Config:
 
     
-    SECRET_KEY = os.environ.get('SECRET_KEY')
+    SECRET_KEY = '12345'
     SQLALCHEMY_DATABASE_URI = 'postgresql+psycopg2://wecode:oppo@localhost/pitch'
     SQLALCHEMY_TRACK_MODIFICATIONS = False
 
