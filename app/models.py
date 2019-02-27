@@ -55,10 +55,12 @@ class User(UserMixin,db.Model):
     id = db.Column(db.Integer,primary_key = True)
     username = db.Column(db.String(255),index = True)
     email = db.Column(db.String(255),unique = True,index = True)
-    # role_id = db.Column(db.Integer,db.ForeignKey('roles.id'))
+    
     bio = db.Column(db.String(255))
     profile_pic_path = db.Column(db.String())
     pass_secure = db.Column(db.String(255))
+    pitches = db.relationship('Pitch',backref = 'user',lazy="dynamic")
+    comments = db.relationship('Comment',backref = 'user',lazy="dynamic")
 
     @property
     def password(self):
@@ -78,12 +80,27 @@ class User(UserMixin,db.Model):
     def __repr__(self):
         return f'User {self.username}'
 
-# class Role(db.Model):
-#     __tablename__ = 'roles'
+class Pitch(db.Model):
+    __tablename__ = 'pitches'
 
-#     id = db.Column(db.Integer,primary_key = True)
-#     name = db.Column(db.String(255))
-#     users = db.relationship('User',backref = 'role',lazy="dynamic")
+    id = db.Column(db.Integer,primary_key = True)
+    description = db.Column(db.String(255))
+    category = db.Column(db.String(255))
+    user_id = db.Column(db.Integer,db.ForeignKey('users.id'))
+    comments = db.relationship('Comment',backref = 'pitch',lazy="dynamic")
+    
 
-#     def __repr__(self):
-#         return f'User {self.name}'
+    def __repr__(self):
+        return f'User {self.description}'
+
+class Comment(db.Model):
+    __tablename__ = 'comments'
+
+    id = db.Column(db.Integer,primary_key = True)
+    description = db.Column(db.String(255))
+    user_id = db.Column(db.Integer,db.ForeignKey('users.id'))
+    pitch_id = db.Column(db.Integer,db.ForeignKey('pitches.id'))
+    
+
+    def __repr__(self):
+        return f'User {self.description}'
