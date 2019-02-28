@@ -21,7 +21,7 @@ def index():
     View root page function that returns the index page and its data
     '''
 
-#     # Getting pitch
+    # Getting pitch
     
     product_pitch = Pitch.query.filter_by(category = 'Product Pitch').all()
     pickup_lines = Pitch.query.filter_by(category = 'Pickup Lines').all()
@@ -44,7 +44,7 @@ def new_pitch():
     pitch_form = PitchForm()    
 
     if pitch_form.validate_on_submit():
-        pitch = Pitch(title = pitch_form.title.data, category = pitch_form.category.data, pitch_content = pitch_form.pitch_content.data, author = pitch_form.author.data)
+        pitch = Pitch(title = pitch_form.title.data, category = pitch_form.category.data, description = pitch_form.pitch_description.data)
 
         db.session.add(pitch)
         db.session.commit() 
@@ -62,7 +62,7 @@ def comments():
     if comments_form.validate_on_submit():       
 
         # Updated comment instance
-        new_comment = Comment(body = comments_form.body.data)
+        new_comment = Comment(description = comments_form.description.data)
 
         # Save review method
         new_comment.save_comment()
@@ -72,16 +72,6 @@ def comments():
     return render_template('comments.html', comments_form = comments_form, comments = comments)
 
 
-@main.route('/user/<uname>/update/pic',methods= ['POST'])
-@login_required
-def update_pic(uname):
-    user = User.query.filter_by(username = uname).first()
-    if 'photo' in request.files:
-        filename = photos.save(request.files['photo'])
-        path = f'photos/{filename}'
-        user.profile_pic_path = path 
-        db.session.commit()
-    return redirect(url_for('main.profile',uname=uname))
 
 @main.route('/user/<uname>')
 def profile(uname):
@@ -92,17 +82,6 @@ def profile(uname):
 
     return render_template("profile/profile.html", user = user) 
 
-
-
-@main.route('/user/<uname>')
-@login_required
-def profile(uname):
-    user = User.query.filter_by(username = uname).first()
-
-    if user is None:
-        abort(404)
-
-    return render_template("profile/profile.html", user = user)
 
 
 @main.route('/user/<uname>/update',methods = ['GET','POST'])

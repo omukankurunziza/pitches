@@ -1,33 +1,25 @@
 
-{% extends 'base.html' %} {% import 'macros.html' as macro %} {% block body %}
+{% extends 'base.html' %} {% import 'macros.html' as macro %} {% block content %}
+<h1 style="color:turquoise">Welcome to The Pitching Website</h1>
 
-<style>
-  .tab {
-    border-right: 1.5px solid rgba(211, 211, 211, 0.5);
-  }
-  .nav-tabs {
-    background-color: white;
-    box-shadow: 2px 2px rgba(169, 169, 169, 0.2);
-  }
-</style>
 
-<ul class="nav nav-tabs nav-justified" role="tablist">
-  <li class="nav-item tab">
+<ul >
+  <li>
     <a class="nav-link" data-toggle="tab" href="#Products" role="tab">Products</a>
   </li>
-  <li class="nav-item tab">
+  <li >
     <a class="nav-link" data-toggle="tab" href="#Pickups" role="tab">Pickup Lines</a>
   </li>
-  <li class="nav-item tab">
+  <li >
     <a class="nav-link" data-toggle="tab" href="#Interviews" role="tab">Interviews</a>
   </li>
-  <li class="nav-item tab">
+  <li >
     <a class="nav-link" data-toggle="tab" href="#Promotions" role="tab">Promotions</a>
   </li>
 </ul>
 
 <a href="{{url_for('main.new_pitch')}}" style = "margin-left: 3.25%; color: #08bec6;">
-  <span>New Pitch<span>
+  <span>Create new Pitch<span>
 </a>
 
 <div class="tab-content">
