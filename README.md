@@ -35,7 +35,7 @@ view the different categories.
 Python v3.6
  Boostrap Flask 
  CSS and HTML
-## link https://github.com/omukankurunziza/pitches
+## link https://pitcheoppo.herokuapp.com/
 ## SetUp / Installation Requirements
 Prerequisites python3.6 Good internet connection For windows users: GitBash For linux/ubuntu users : Git Setting up Flask
 ## Support and Contact details
