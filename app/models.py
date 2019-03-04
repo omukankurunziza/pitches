@@ -2,7 +2,7 @@ from . import db
 from werkzeug.security import generate_password_hash,check_password_hash
 from flask_login import UserMixin
 from . import login_manager
-# from datetime import datetime
+from datetime import datetime
 
 
 class User(UserMixin,db.Model):
@@ -45,6 +45,7 @@ class Pitch(db.Model):
     category = db.Column(db.String(255))
     upvote = db.Column(db.Integer)
     downvote = db.Column(db.Integer)
+    published_at = db.Column(db.DateTime, default = datetime.utcnow)    
     user_id = db.Column(db.Integer,db.ForeignKey('users.id'))
     comments = db.relationship('Comment',backref = 'pitch',lazy="dynamic")
     
@@ -56,11 +57,11 @@ class Comment(db.Model):
     __tablename__ = 'comments'
 
     id = db.Column(db.Integer,primary_key = True)
-    description = db.Column(db.String(255))
+    body = db.Column(db.String(255))
     user_id = db.Column(db.Integer,db.ForeignKey('users.id'))
     pitch_id = db.Column(db.Integer,db.ForeignKey('pitches.id'))
-    # body = db.Column(db.String)          
-    # published_at = db.Column(db.DateTime, default = datetime.utcnow)  
+            
+    published_at = db.Column(db.DateTime, default = datetime.utcnow)  
 
     def __repr__(self):
         return f'User {self.description}'
