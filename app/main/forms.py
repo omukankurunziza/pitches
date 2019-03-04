@@ -1,12 +1,12 @@
 from flask_wtf import FlaskForm
-from wtforms import StringField,TextAreaField,SubmitField,SelectField
-from wtforms.validators import Required,Email
-# from ..models import User
+from wtforms import StringField, TextAreaField, SubmitField, RadioField
+from wtforms.validators import Required
 
 class PitchForm(FlaskForm):
-    title= StringField('Pitch Title', validators=[Required()])
-    pitch_description = TextAreaField('Write Pitch', validators=[Required()])  
-    category = SelectField('Pick Category', choices=[('Pickup Lines', 'Pickup Lines'), ('Interview Pitch', 'Interview Pitch'), ('Product Pitch', 'Product Pitch'), ('Promotion Pitch', 'Promotion Pitch')], validators=[Required()])  
+    title = StringField('Pitch Title', validators=[Required()])
+    author = StringField('Author', validators=[Required()])
+    pitch_content = TextAreaField('Write Pitch', validators=[Required()])  
+    category = RadioField('Pick Category', choices=[('Pickup Lines', 'Pickup Lines'), ('Interview Pitch', 'Interview Pitch'), ('Product Pitch', 'Product Pitch'), ('Promotion Pitch', 'Promotion Pitch')], validators=[Required()])  
     submit = SubmitField('Submit')
 
 class UpdateProfile(FlaskForm):
@@ -14,5 +14,5 @@ class UpdateProfile(FlaskForm):
     submit = SubmitField('Submit')
 
 class CommentsForm(FlaskForm):
-    description = TextAreaField('Write a comment...', validators=[Required()])
+    body = TextAreaField('Write a comment...', validators=[Required()])
     submit = SubmitField('Submit')

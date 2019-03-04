@@ -40,7 +40,8 @@ class Pitch(db.Model):
 
     id = db.Column(db.Integer,primary_key = True)
     title =  db.Column(db.String(255)) 
-    description = db.Column(db.String(255))
+    pitch_content = db.Column(db.String(255))
+    author = db.Column(db.String(255))
     category = db.Column(db.String(255))
     upvote = db.Column(db.Integer)
     downvote = db.Column(db.Integer)
@@ -58,7 +59,8 @@ class Comment(db.Model):
     description = db.Column(db.String(255))
     user_id = db.Column(db.Integer,db.ForeignKey('users.id'))
     pitch_id = db.Column(db.Integer,db.ForeignKey('pitches.id'))
-    
+    # body = db.Column(db.String)          
+    # published_at = db.Column(db.DateTime, default = datetime.utcnow)  
 
     def __repr__(self):
         return f'User {self.description}'

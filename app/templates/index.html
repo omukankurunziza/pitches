@@ -1,9 +1,10 @@
 
 {% extends 'base.html' %} {% import 'macros.html' as macro %} {% block content %}
-<h1 style="color:turquoise">Welcome to The Pitching Website</h1>
+<div class ="text" style="background-color:wheat">
+<h1 style="color:teal; background-color:wheat;text-align:center;">Welcome to The Pitching Website</h1>
 
 
-<ul >
+<ul style = "text-align: left ; font-size :24px">
   <li>
     <a class="nav-link" data-toggle="tab" href="#Products" role="tab">Products</a>
   </li>
@@ -18,11 +19,12 @@
   </li>
 </ul>
 
-<a href="{{url_for('main.new_pitch')}}" style = "margin-left: 3.25%; color: #08bec6;">
-  <span>Create new Pitch<span>
+<a href="{{url_for('main.new_pitch')}}" style = "margin-left: 20.25%; color: blue;font-size: 16px">
+  <span >Create new Pitch<span>
 </a>
+</div>
 
-<div class="tab-content">
+<div class="tab-content" style="background-color:teal;color:white">
   <div style="margin-top: 1em;" class="tab-pane" id="Products" role="tabpanel">
     <div class="container-fluid" style="margin: 0% 2%">
       <div class="row">
